@@ -1,0 +1,26 @@
+name: SOPKATHON
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  check_build:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Java 11 (corretto)
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'corretto'
+        java-version: '11'
+
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+
+    - name: build
+      run: ./gradlew build -x test
