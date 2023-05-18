@@ -26,9 +26,7 @@ public class SecurityConfig {
                  registry.addMapping("/**")
                          .allowedOrigins("*")
                          .allowedOriginPatterns("*")
-                         .allowedMethods("*")
-                         .allowCredentials(true)
-                         .maxAge(3600);
+                         .allowedMethods("*");
              }
          };
      }
