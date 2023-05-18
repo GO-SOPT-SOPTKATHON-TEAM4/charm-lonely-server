@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Java 17 (corretto)
+      - name: Set up Java 11 (corretto)
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
