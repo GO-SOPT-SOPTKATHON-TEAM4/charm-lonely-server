@@ -1,7 +1,10 @@
 name: Gradle Build on PR
 
 on:
+  push:
+    branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   check_build:
