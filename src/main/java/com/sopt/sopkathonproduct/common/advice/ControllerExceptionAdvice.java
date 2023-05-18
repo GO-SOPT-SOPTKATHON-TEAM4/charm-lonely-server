@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
 
 @RestControllerAdvice
@@ -34,5 +35,10 @@ public class ControllerExceptionAdvice {
         return ApiResponseDto.error(ErrorStatus.VALIDATION_EXCEPTION);
     }
 
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(CustomException.class)
+    protected ApiResponseDto handleUnexpectedException(final CustomException e) {
+        return ApiResponseDto.error(ErrorStatus.INTERNAL_SERVER_ERROR);
+    }
     // CustomException
 }
