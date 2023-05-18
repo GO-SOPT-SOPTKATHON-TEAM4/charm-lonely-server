@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
+
 @RestControllerAdvice
 public class ControllerExceptionAdvice {
 
@@ -20,9 +22,17 @@ public class ControllerExceptionAdvice {
         return ApiResponseDto.error(ErrorStatus.VALIDATION_REQUEST_MISSING_EXCEPTION);
     }
 
-    // IllegalArgumentException
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    protected ApiResponseDto handleIllegalArgumentException(final IllegalArgumentException e) {
+        return ApiResponseDto.error(ErrorStatus.VALIDATION_EXCEPTION);
+    }
 
-    // EntityNotFoundException
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EntityNotFoundException.class)
+    protected ApiResponseDto handleEntityNotFoundException(final EntityNotFoundException e) {
+        return ApiResponseDto.error(ErrorStatus.VALIDATION_EXCEPTION);
+    }
 
     // CustomException
 }

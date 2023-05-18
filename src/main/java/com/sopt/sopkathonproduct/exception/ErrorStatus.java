@@ -10,11 +10,15 @@ import org.springframework.http.HttpStatus;
 public enum ErrorStatus {
 
     /*
+    UNAUTHORIZED
+    */
+    INVALID_MEMBER(HttpStatus.UNAUTHORIZED, "유효하지 않은 멤버입니다."),
+
+    /*
     BAD_REQUEST
      */
     VALIDATION_EXCEPTION(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     VALIDATION_REQUEST_MISSING_EXCEPTION(HttpStatus.BAD_REQUEST, "요청값이 입력되지 않았습니다."),
-
     /*
     CONFLICT
      */
