@@ -2,10 +2,8 @@ package com.sopt.sopkathonproduct.controller;
 
 import com.sopt.sopkathonproduct.common.dto.ApiResponseDto;
 import com.sopt.sopkathonproduct.exception.SuccessStatus;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
