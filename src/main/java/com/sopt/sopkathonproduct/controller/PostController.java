@@ -4,6 +4,7 @@ package com.sopt.sopkathonproduct.controller;
 import com.sopt.sopkathonproduct.common.dto.ApiResponseDto;
 import com.sopt.sopkathonproduct.domain.entity.Post;
 import com.sopt.sopkathonproduct.dto.request.UploadRequestDTO;
+import com.sopt.sopkathonproduct.dto.response.PostListResponseDTO;
 import com.sopt.sopkathonproduct.dto.response.PostResponseDTO;
 import com.sopt.sopkathonproduct.dto.response.UploadResponseDTO;
 import com.sopt.sopkathonproduct.exception.SuccessStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -39,7 +41,13 @@ public class PostController {
     @GetMapping("/{postId}")
     public ApiResponseDto getPost(@PathVariable Long postId) {
         Post response = postService.getById(postId);
-        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDTO.of(response.getId(), response.getNickname(), response.getImageUrl(), response.getComment()));
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDTO.of(response));
+    }
+
+    @GetMapping("/ranking")
+    public ApiResponseDto getPostList() {
+        List<Post> response = postService.getAll();
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostListResponseDTO.of(response));
     }
 
 }
