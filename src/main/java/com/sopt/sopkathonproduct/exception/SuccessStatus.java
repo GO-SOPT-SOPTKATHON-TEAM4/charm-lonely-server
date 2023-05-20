@@ -12,6 +12,11 @@ public enum SuccessStatus {
     HEALTH(HttpStatus.OK, "서버가 정상적으로 작동하고 있습니다."),
 
     /**
+     * S3
+     */
+    UPLOAD_POST_SUCCESS(HttpStatus.OK, "게시글이 성공적으로 업로드 되었습니다."),
+
+    /**
      * 200 OK
      */
     READ_POST_SUCCESS(HttpStatus.OK, "게시글 상세 조회 성공"),

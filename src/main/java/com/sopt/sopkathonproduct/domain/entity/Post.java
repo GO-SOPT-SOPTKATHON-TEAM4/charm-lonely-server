@@ -30,8 +30,15 @@ public class Post extends BaseEntity {
     @Column(nullable = false)
     private String comment;
 
-    @Column(nullable = false)
-    private String point;
+    @Column(nullable = false, columnDefinition = "bigint default 0")
+    private Long point;
+
+    @Builder
+    public Post(String nickname, String imageUrl, String comment) {
+        this.nickname = nickname;
+        this.imageUrl = imageUrl;
+        this.comment = comment;
+    }
 
     @Builder
     public Post(Long id, String nickname, String imageUrl, String comment) {
