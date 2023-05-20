@@ -4,7 +4,7 @@ package com.sopt.sopkathonproduct.controller;
 import com.sopt.sopkathonproduct.common.dto.ApiResponseDto;
 import com.sopt.sopkathonproduct.domain.entity.Post;
 import com.sopt.sopkathonproduct.dto.request.UploadRequestDTO;
-import com.sopt.sopkathonproduct.dto.response.PostResponseDto;
+import com.sopt.sopkathonproduct.dto.response.PostResponseDTO;
 import com.sopt.sopkathonproduct.dto.response.UploadResponseDTO;
 import com.sopt.sopkathonproduct.exception.SuccessStatus;
 import com.sopt.sopkathonproduct.service.PostService;
@@ -39,7 +39,7 @@ public class PostController {
     @GetMapping("/{postId}")
     public ApiResponseDto getPost(@PathVariable Long postId) {
         Post response = postService.getById(postId);
-        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDto.of(response.getId(), response.getNickname(), response.getImageUrl(), response.getComment()));
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDTO.of(response.getId(), response.getNickname(), response.getImageUrl(), response.getComment()));
     }
 
 }

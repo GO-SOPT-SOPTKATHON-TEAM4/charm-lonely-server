@@ -6,14 +6,14 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class PostResponseDto {
+public class PostResponseDTO {
 
     private Long postId;
     private String nickname;
     private String imageUrl;
     private String comment;
 
-    public static PostResponseDto of(Long postId, String nickname, String imageUrl, String comment) {
-        return new PostResponseDto(postId, nickname, imageUrl, comment);
+    public static PostResponseDTO of(Long postId, String nickname, String imageUrl, String comment) {
+        return new PostResponseDTO(postId, nickname, imageUrl, comment);
     }
 }
