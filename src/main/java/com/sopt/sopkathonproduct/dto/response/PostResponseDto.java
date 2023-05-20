@@ -1,15 +1,8 @@
 package com.sopt.sopkathonproduct.dto.response;
 
-import com.sopt.sopkathonproduct.domain.entity.Post;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
