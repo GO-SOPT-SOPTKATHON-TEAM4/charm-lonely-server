@@ -23,7 +23,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     public List<PostResponseDTO> getPostList() {
-        List<Post> posts = postRepository.findAll();
+        List<Post> posts = postRepository.findAllByOrderByPointDesc();
         return posts.stream().map(this::fromPost).collect(Collectors.toList());
     }
 
