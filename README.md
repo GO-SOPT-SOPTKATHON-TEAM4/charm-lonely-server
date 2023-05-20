@@ -40,3 +40,6 @@
                 - SopkathonProductApplicationTests.java
         - resources
             - application.yml
+
+### 1차 과제 화목한 서버
+<img src="assets/a1.png">

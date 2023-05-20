@@ -24,10 +24,10 @@ public class    Post {
 
     private String comment;
 
-    private String point;
+    private Long point;
 
     @Builder
-    public Post(String nickname, String imageUrl, String comment, String point) {
+    public Post(String nickname, String imageUrl, String comment, Long point) {
         this.nickname = nickname;
         this.imageUrl = imageUrl;
         this.comment = comment;
