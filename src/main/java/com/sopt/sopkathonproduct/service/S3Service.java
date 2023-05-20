@@ -36,7 +36,7 @@ public class S3Service {
             try {
                 NicknameValidator.validate(requestDTO.getNickname());
                 String uploadFilePath = IMAGE_FOLDER_NAME + "/" + getFoldername();
-                String uploadFileName = uploadFilePath + "/" + image.getOriginalFilename() + extractExtension(image);
+                String uploadFileName = uploadFilePath + "/" + image.getOriginalFilename();
 
 
                 String uploadImageUrl = s3Util.upload(getInputStream(image), uploadFileName, getObjectMetadata(image));
