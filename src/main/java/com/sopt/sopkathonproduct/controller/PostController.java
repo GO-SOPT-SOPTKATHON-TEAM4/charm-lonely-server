@@ -4,8 +4,9 @@ package com.sopt.sopkathonproduct.controller;
 import com.sopt.sopkathonproduct.common.dto.ApiResponseDto;
 import com.sopt.sopkathonproduct.domain.entity.Post;
 import com.sopt.sopkathonproduct.dto.request.UploadRequestDTO;
+import com.sopt.sopkathonproduct.dto.response.PostListResponseDTO;
+import com.sopt.sopkathonproduct.dto.response.PostResponseDTO;
 import com.sopt.sopkathonproduct.dto.response.RandomPostResponseDTO;
-import com.sopt.sopkathonproduct.dto.response.PostResponseDto;
 import com.sopt.sopkathonproduct.dto.response.UploadResponseDTO;
 import com.sopt.sopkathonproduct.exception.SuccessStatus;
 import com.sopt.sopkathonproduct.service.PostService;
@@ -55,19 +56,24 @@ public class PostController {
     }
 
     @Data
-    public static class PostsDTO{
+    public static class PostsDTO {
         List<RandomPostResponseDTO> posts;
 
         public PostsDTO(List<RandomPostResponseDTO> posts) {
             this.posts = posts;
         }
     }
-}
 
     @GetMapping("/{postId}")
     public ApiResponseDto getPost(@PathVariable Long postId) {
         Post response = postService.getById(postId);
-        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDto.of(response.getId(), response.getNickname(), response.getImageUrl(), response.getComment()));
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDTO.of(response));
+    }
+
+    @GetMapping("/ranking")
+    public ApiResponseDto getPostList() {
+        List<Post> response = postService.getAll();
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostListResponseDTO.of(response));
     }
 }
 
