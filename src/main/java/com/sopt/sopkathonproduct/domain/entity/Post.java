@@ -1,16 +1,16 @@
 package com.sopt.sopkathonproduct.domain.entity;
 
-import com.sopt.sopkathonproduct.common.domain.BaseEntity;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
 
 import static javax.persistence.GenerationType.IDENTITY;
-import static lombok.AccessLevel.*;
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
 @NoArgsConstructor(access = PROTECTED)
@@ -31,7 +31,7 @@ public class Post {
     @Column(nullable = false)
     private String comment;
 
-    @Column(nullable = false, columnDefinition = "bigint default 0")
+    @Column(columnDefinition = "bigint default '0'")
     private Long point;
 
     @Builder

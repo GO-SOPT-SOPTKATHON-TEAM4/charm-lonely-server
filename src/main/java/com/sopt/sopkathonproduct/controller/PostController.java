@@ -2,17 +2,14 @@ package com.sopt.sopkathonproduct.controller;
 
 
 import com.sopt.sopkathonproduct.common.dto.ApiResponseDto;
-import com.sopt.sopkathonproduct.domain.entity.Post;
 import com.sopt.sopkathonproduct.dto.request.UploadRequestDTO;
 import com.sopt.sopkathonproduct.dto.response.PostListResponseDTO;
 import com.sopt.sopkathonproduct.dto.response.PostResponseDTO;
-import com.sopt.sopkathonproduct.dto.response.RandomPostResponseDTO;
 import com.sopt.sopkathonproduct.dto.response.UploadResponseDTO;
 import com.sopt.sopkathonproduct.exception.SuccessStatus;
 import com.sopt.sopkathonproduct.service.PostService;
 import com.sopt.sopkathonproduct.service.RankingService;
 import com.sopt.sopkathonproduct.service.S3Service;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -49,31 +46,23 @@ public class PostController {
     }
 
     @GetMapping("/tournament")
-    public ApiResponseDto<PostsDTO> getRandomImage() {
-        List<RandomPostResponseDTO> dtoList = postService.getRandom8Post();
-        PostsDTO postsDTO = new PostsDTO(dtoList);
-        return ApiResponseDto.success(SuccessStatus.READ_POST_LIST_SUCCESS, postsDTO);
-    }
-
-    @Data
-    public static class PostsDTO {
-        List<RandomPostResponseDTO> posts;
-
-        public PostsDTO(List<RandomPostResponseDTO> posts) {
-            this.posts = posts;
-        }
+    public ApiResponseDto<PostListResponseDTO> getRandomImage() {
+        List<PostResponseDTO> dtoList = postService.getRandom8Post();
+        PostListResponseDTO postListResponseDTO = new PostListResponseDTO(dtoList);
+        return ApiResponseDto.success(SuccessStatus.READ_POST_LIST_SUCCESS, postListResponseDTO);
     }
 
     @GetMapping("/{postId}")
-    public ApiResponseDto getPost(@PathVariable Long postId) {
-        Post response = postService.getById(postId);
-        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostResponseDTO.of(response));
+    public ApiResponseDto<PostResponseDTO> getPost(@PathVariable Long postId) {
+        PostResponseDTO response = postService.getPost(postId);
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, response);
     }
 
     @GetMapping("/ranking")
-    public ApiResponseDto getPostList() {
-        List<Post> response = postService.getAll();
-        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, PostListResponseDTO.of(response));
+    public ApiResponseDto<PostListResponseDTO> getPostList() {
+        List<PostResponseDTO> posts = postService.getPostList();
+        PostListResponseDTO response = new PostListResponseDTO(posts);
+        return ApiResponseDto.success(SuccessStatus.READ_POST_SUCCESS, response);
     }
 }
 
