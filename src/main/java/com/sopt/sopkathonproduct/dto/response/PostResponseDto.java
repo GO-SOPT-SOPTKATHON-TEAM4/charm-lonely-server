@@ -8,12 +8,12 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostResponseDto {
 
-    private Long id;
+    private Long postId;
     private String nickname;
     private String imageUrl;
     private String comment;
 
-    public static PostResponseDto of(Long id, String nickname, String imageUrl, String comment) {
-        return new PostResponseDto(id, nickname, imageUrl, comment);
+    public static PostResponseDto of(Long postId, String nickname, String imageUrl, String comment) {
+        return new PostResponseDto(postId, nickname, imageUrl, comment);
     }
 }
