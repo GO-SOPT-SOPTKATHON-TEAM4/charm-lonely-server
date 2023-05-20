@@ -8,6 +8,7 @@ import com.sopt.sopkathonproduct.exception.SuccessStatus;
 import com.sopt.sopkathonproduct.service.PostService;
 import com.sopt.sopkathonproduct.service.S3Service;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,7 @@ public class PostController {
 
     @CrossOrigin
     @PostMapping("/upload")
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponseDto<UploadResponseDTO> uploadPost(
             @RequestPart MultipartFile image, UploadRequestDTO uploadRequestDto,
             HttpServletResponse response
