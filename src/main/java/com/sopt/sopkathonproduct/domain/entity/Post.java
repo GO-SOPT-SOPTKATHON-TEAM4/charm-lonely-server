@@ -1,7 +1,9 @@
 package com.sopt.sopkathonproduct.domain.entity;
 
+import com.sopt.sopkathonproduct.common.domain.BaseEntity;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,18 +15,22 @@ import static lombok.AccessLevel.*;
 @Entity
 @NoArgsConstructor(access = PROTECTED)
 @Getter
-public class Post {
+public class Post extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nickname;
 
+    @Column(nullable = false)
     private String imageUrl;
 
+    @Column(nullable = false)
     private String comment;
 
+    @Column(nullable = false)
     private String point;
 
     @Builder
