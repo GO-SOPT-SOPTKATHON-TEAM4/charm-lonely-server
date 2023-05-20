@@ -9,9 +9,9 @@
 |               프로젝트 세팅<br />서버 배포<br />DB 설계<br />Api 작성<br />               |        프로젝트 세팅<br />서버 배포<br />DB 설계<br />Api 작성<br />        |
 
 ## 코드 컨벤션
-
+[코드 컨벤션](https://busy-tern-9b7.notion.site/c4ccd96333594488ba91a80296536c4f)
 ## Git 전략
-
+[깃 컨벤션](https://busy-tern-9b7.notion.site/60f6499d6b494de994f0c2f15cc35114)
 ## ERD
 
 ## API 명세서
