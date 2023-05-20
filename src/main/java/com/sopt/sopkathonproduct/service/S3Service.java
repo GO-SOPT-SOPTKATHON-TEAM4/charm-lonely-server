@@ -45,7 +45,6 @@ public class S3Service {
                         .imageUrl(uploadImageUrl)
                         .nickname(requestDTO.getNickname())
                         .comment(requestDTO.getComment())
-                        .point(0L)
                         .build();
 
                 postRepository.save(post);
