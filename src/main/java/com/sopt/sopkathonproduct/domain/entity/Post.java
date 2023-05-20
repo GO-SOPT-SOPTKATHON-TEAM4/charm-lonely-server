@@ -17,6 +17,7 @@ import static lombok.AccessLevel.*;
 @Getter
 public class Post extends BaseEntity {
 
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
@@ -50,5 +51,9 @@ public class Post extends BaseEntity {
 
     public static Post newInstance(Long id, String nickname, String imageUrl, String comment) {
         return new Post(id, nickname, imageUrl, comment);
+    }
+
+    public void updatePoint() {
+        this.point += 1L;
     }
 }

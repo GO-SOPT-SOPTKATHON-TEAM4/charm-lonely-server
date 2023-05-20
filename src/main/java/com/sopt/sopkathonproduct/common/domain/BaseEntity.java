@@ -22,4 +22,9 @@ public abstract class BaseEntity {
     @Column(name="updated_at")
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public BaseEntity(LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }
