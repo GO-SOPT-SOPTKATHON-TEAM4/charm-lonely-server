@@ -34,10 +34,14 @@ public class Post extends BaseEntity {
     private String point;
 
     @Builder
-    public Post(String nickname, String imageUrl, String comment, String point) {
+    public Post(Long id, String nickname, String imageUrl, String comment) {
+        this.id = id;
         this.nickname = nickname;
         this.imageUrl = imageUrl;
         this.comment = comment;
-        this.point = point;
+    }
+
+    public static Post newInstance(Long id, String nickname, String imageUrl, String comment) {
+        return new Post(id, nickname, imageUrl, comment);
     }
 }
