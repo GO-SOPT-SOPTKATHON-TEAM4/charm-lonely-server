@@ -49,11 +49,21 @@ public class Post {
         this.comment = comment;
     }
 
-    public static Post newInstance(Long id, String nickname, String imageUrl, String comment) {
-        return new Post(id, nickname, imageUrl, comment);
+    public static Post createPost(String nickname, String imageUrl, String comment) {
+        Post post = Post.builder()
+                .nickname(nickname)
+                .imageUrl(imageUrl)
+                .comment(comment)
+                .build();
+        post.updateDefaultPoint();
+        return post;
     }
 
     public void updatePoint() {
         this.point += 1L;
+    }
+
+    public void updateDefaultPoint() {
+        this.point = 0L;
     }
 }

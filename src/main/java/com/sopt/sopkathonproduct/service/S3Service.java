@@ -41,11 +41,7 @@ public class S3Service {
 
                 String uploadImageUrl = s3Util.upload(getInputStream(image), uploadFileName, getObjectMetadata(image));
 
-                Post post = Post.builder()
-                        .imageUrl(uploadImageUrl)
-                        .nickname(requestDTO.getNickname())
-                        .comment(requestDTO.getComment())
-                        .build();
+                Post post = Post.createPost(requestDTO.getNickname(), uploadImageUrl, requestDTO.getComment());
 
                 postRepository.save(post);
 
