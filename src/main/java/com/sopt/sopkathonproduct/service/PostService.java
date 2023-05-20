@@ -2,7 +2,7 @@ package com.sopt.sopkathonproduct.service;
 
 
 import com.sopt.sopkathonproduct.domain.entity.Post;
-import com.sopt.sopkathonproduct.dto.response.RandomPostResponseDTO;
+import com.sopt.sopkathonproduct.dto.response.PostResponseDTO;
 import com.sopt.sopkathonproduct.exception.ErrorStatus;
 import com.sopt.sopkathonproduct.exception.NotFoundException;
 import com.sopt.sopkathonproduct.repository.PostRepository;
@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,22 +22,27 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public List<Post> getAll() {
+    public List<PostResponseDTO> getPostList() {
         List<Post> posts = postRepository.findAll();
         return posts.stream().map(this::fromPost).collect(Collectors.toList());
     }
 
-    public Post getById(Long postId) {
+    public PostResponseDTO getPost(Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new NotFoundException(ErrorStatus.NOT_FOUND_EXCEPTION));
 
         return fromPost(post);
     }
 
-    private Post fromPost(Post post) {
-        return Post.newInstance(post.getId(), post.getNickname(), post.getImageUrl(), post.getComment());
+    private PostResponseDTO fromPost(Post post) {
+        return PostResponseDTO.builder()
+                .postId(post.getId())
+                .nickname(post.getNickname())
+                .imageUrl(post.getImageUrl())
+                .comment(post.getComment())
+                .build();
     }
 
-    public List<RandomPostResponseDTO> getRandom8Post() {
+    public List<PostResponseDTO> getRandom8Post() {
         long qty = postRepository.count();
         int totalPostsToFetch = 8;
 
@@ -48,7 +52,7 @@ public class PostService {
             throw new RuntimeException("게시글이 8개 미만입니다.");
         }
 
-        List<RandomPostResponseDTO> postResponseDTOList = new ArrayList<>();
+        List<PostResponseDTO> postResponseDTOList = new ArrayList<>();
         Random rand = new Random();
 
         while (randomIds.size() < totalPostsToFetch) {
@@ -60,14 +64,8 @@ public class PostService {
 
         for (long idx : randomIds) {
             Post post = postRepository.findById(idx)
-                    .orElseThrow(() -> new EntityNotFoundException("해당 게시글이 존재하지 않습니다."));
-            postResponseDTOList.add(
-                    RandomPostResponseDTO.builder()
-                            .postId(post.getId())
-                            .nickname(post.getNickname())
-                            .imageUrl(post.getImageUrl())
-                            .comment(post.getComment())
-                            .build());
+                    .orElseThrow(() -> new NotFoundException(ErrorStatus.NOT_FOUND_EXCEPTION));
+            postResponseDTOList.add(fromPost(post));
         }
         return postResponseDTOList;
     }

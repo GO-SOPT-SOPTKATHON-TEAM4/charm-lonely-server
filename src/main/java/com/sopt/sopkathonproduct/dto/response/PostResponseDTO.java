@@ -1,20 +1,23 @@
 package com.sopt.sopkathonproduct.dto.response;
 
-import com.sopt.sopkathonproduct.domain.entity.Post;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostResponseDTO {
-
     private Long postId;
     private String nickname;
     private String imageUrl;
     private String comment;
 
-    public static PostResponseDTO of(Post post) {
-        return new PostResponseDTO(post.getId(), post.getNickname(), post.getImageUrl(), post.getComment());
+    @Builder
+    public PostResponseDTO(Long postId, String nickname, String imageUrl, String comment) {
+        this.postId = postId;
+        this.nickname = nickname;
+        this.imageUrl = imageUrl;
+        this.comment = comment;
     }
 }
